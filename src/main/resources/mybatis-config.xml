@@ -20,6 +20,6 @@
     </settings>
 
     <typeAliases>
-        <package name="com.example.springboot.cheng.domain"/>
+        <package name="com.yun.admin.model.pojo"/>
     </typeAliases>
 </configuration>
