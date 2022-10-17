@@ -5,6 +5,7 @@ import com.yun.admin.model.pojo.SubSign;
 import com.yun.admin.service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class DataTestController {
     private IPersonService personService;
 
     @GetMapping("/a01")
-    public Object getPersonMsg(Person person){
+    public Object getPersonMsg(@RequestBody Person person){
         return personService.selectList(person);
     }
 

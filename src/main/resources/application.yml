@@ -1,3 +1,6 @@
+server:
+  port: 1876
+
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -11,10 +14,10 @@ spring:
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭
-        enabled: false
-        url:
-        username:
-        password:
+        enabled: true
+        url: jdbc:mysql://114.116.25.184:3306/yun_data2?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        username: root
+        password: Zyb@940729
       # 初始连接数
       initialSize: 5
       # 最小连接池数量
@@ -58,7 +61,8 @@ spring:
 # MyBatis配置
 mybatis:
   # 搜索指定包别名
-  typeAliasesPackage: com.example.**.domain
+  typeAliasesPackage: com.yun.admin.model.pojo
+  #typeAliasesPackage:com.yun.admin.model.pojo
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
