@@ -57,6 +57,10 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
 
 # MyBatis配置
 mybatis:
@@ -67,3 +71,15 @@ mybatis:
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
   configLocation: classpath:mybatis/mybatis-config.xml
+
+
+# minio 文件存储配置信息
+minio:
+  minioUrl: http://114.116.25.184:9000/
+  accessKey: minioadmin
+  secretKey: minioadmin
+  passagerBucket: passager
+  driverBucket: driver
+  systemBucket: system
+  minyunBucket: minyun
+  downLoadPath: /data/minIo/tmp/downLoad
