@@ -45,6 +45,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
         return (T) beanFactory.getBean(name);
     }
 
+
     /**
      * 获取类型为requiredType的对象
      *
