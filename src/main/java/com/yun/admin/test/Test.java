@@ -25,6 +25,7 @@ public class Test {
                         String content = (String) threadLocal.get().get(threadLocal.get().size()-1);
                         log.info("第"+threadLocal.get().size()+"---"+ content);
                     }else {
+
                         break;
                     }
                 }
