@@ -79,6 +79,7 @@ public final class SpringUtils implements BeanFactoryPostProcessor, ApplicationC
         return beanFactory.isSingleton(name);
     }
 
+
     /**
      * @param name
      * @return Class 注册对象的类型
