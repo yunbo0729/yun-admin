@@ -2,6 +2,7 @@ package com.yun.admin.aspectj;
 
 
 import java.util.Objects;
+
 import com.yun.admin.annotation.DataSource;
 import com.yun.admin.datasource.DynamicDataSourceContextHolder;
 import com.yun.admin.utils.StringUtils;
@@ -22,32 +23,26 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Order(1)
 @Component
-public class DataSourceAspect{
+public class DataSourceAspect {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @Pointcut("@annotation(com.yun.admin.annotation.DataSource)"
             + "|| @within(com.yun.admin.annotation.DataSource)")
-    public void dsPointCut()
-    {
+    public void dsPointCut() {
 
     }
 
     @Around("dsPointCut()")
-    public Object around(ProceedingJoinPoint point) throws Throwable
-    {
+    public Object around(ProceedingJoinPoint point) throws Throwable {
         DataSource dataSource = getDataSource(point);
 
-        if (StringUtils.isNotNull(dataSource))
-        {
+        if (StringUtils.isNotNull(dataSource)) {
             DynamicDataSourceContextHolder.setDataSourceType(dataSource.value().name());
         }
 
-        try
-        {
+        try {
             return point.proceed();
-        }
-        finally
-        {
+        } finally {
             // 销毁数据源 在执行方法之后
             DynamicDataSourceContextHolder.clearDataSourceType();
         }
@@ -56,12 +51,10 @@ public class DataSourceAspect{
     /**
      * 获取需要切换的数据源
      */
-    public DataSource getDataSource(ProceedingJoinPoint point)
-    {
+    public DataSource getDataSource(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         DataSource dataSource = AnnotationUtils.findAnnotation(signature.getMethod(), DataSource.class);
-        if (Objects.nonNull(dataSource))
-        {
+        if (Objects.nonNull(dataSource)) {
             return dataSource;
         }
 
