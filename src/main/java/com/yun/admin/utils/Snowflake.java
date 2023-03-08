@@ -1,4 +1,4 @@
-package com.yun.admin.common;
+package com.yun.admin.utils;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
