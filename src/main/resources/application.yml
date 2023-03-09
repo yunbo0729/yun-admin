@@ -61,7 +61,11 @@ spring:
     multipart:
       max-file-size: 200MB
       max-request-size: 200MB
-
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 # MyBatis配置
 mybatis:
   # 搜索指定包别名
