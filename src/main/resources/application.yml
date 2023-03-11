@@ -2,6 +2,10 @@ server:
   port: 1876
 
 spring:
+  application:
+    name: yundemo
+  profiles:
+    active: dev #默认为开发环境
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -66,6 +70,27 @@ spring:
     port: 5672
     username: guest
     password: guest
+    # 开启发送者confirm机制
+    publisher-confirm-type: correlated
+    # 开启发送者消息抵达队列的确认机制
+    publisher-returns: true
+    template:
+      # 只要消息未能抵达队列 就触发失败回调
+      mandatory: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        #手动确认消费
+        acknowledge-mode: manual
+        retry:
+          # 开启消费者重试机制（默认就是true，false则取消重试机制）
+          enabled: true
+          # 最大重试次数
+          max-attempts: 5
+          # 重试间距（单位：秒）
+          initial-interval: 2s
+
 # MyBatis配置
 mybatis:
   # 搜索指定包别名
@@ -87,3 +112,33 @@ minio:
   systemBucket: system
   minyunBucket: minyun
   downLoadPath: /data/minIo/tmp/downLoad
+
+notice:
+  ####### 企业微信群机器人key
+  wechat-key: xxxxxxxxx-xxx-xxx-xxxx-xxxxxxxxxx
+  ####### 需要@的群成员手机号
+  phone-list:
+## 轻量级HTTP客户端框架forest
+forest:
+  # 配置底层API为 okhttp3
+  backend: okhttp3
+  # 连接池最大连接数，默认值为500
+  max-connections: 1000
+  # 每个路由的最大连接数，默认值为500
+  max-route-connections: 500
+  # 请求超时时间，单位为毫秒, 默认值为3000
+  timeout: 3000
+  # 连接超时时间，单位为毫秒, 默认值为2000
+  connect-timeout: 3000
+  # 请求失败后重试次数，默认为0次不重试
+  retry-count: 1
+  # 单向验证的HTTPS的默认SSL协议，默认为SSLv3
+  ssl-protocol: SSLv3
+  # 打开或关闭日志，默认为true
+  logEnabled: true
+  # 打开/关闭Forest请求日志（默认为 true）
+  log-request: true
+  # 打开/关闭Forest响应状态日志（默认为 true）
+  log-response-status: true
+  # 打开/关闭Forest响应内容日志（默认为 false）
+  log-response-content: true

@@ -1,4 +1,4 @@
-package com.yun.admin.test;
+package com.yun.admin.rabbitmq;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +12,17 @@ public class RabbitMQSendTest {
     @Autowired
     RabbitMQSend rabbitMQSend;
 
+
+
     @Test
     public void send(){
         rabbitMQSend.send();
     }
+    /*@Test
+    public void send1(){
+        rabbitMQSend.send1();
+    }*/
+
     @Test
     public void topicSend(){
         rabbitMQSend.topicSend();

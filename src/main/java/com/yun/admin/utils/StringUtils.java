@@ -370,4 +370,23 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
     public static <T> T cast(Object obj) {
         return (T) obj;
     }
+
+    /**
+     * 限制文本描述
+     *
+     * @param content 内容或问题
+     * @param charNumber 长度
+     * @return
+     */
+    public static String limitStrNone(String content ,int charNumber){
+        if (StringUtils.isNotBlank(content)){
+            if (content.length() > charNumber){
+                String substring = content.substring(0, charNumber);
+                return substring;
+            }else {
+                return content;
+            }
+        }
+        return "";
+    }
 }

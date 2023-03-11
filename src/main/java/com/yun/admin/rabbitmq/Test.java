@@ -1,4 +1,4 @@
-package com.yun.admin.test;
+package com.yun.admin.rabbitmq;
 
 import lombok.extern.slf4j.Slf4j;
 
