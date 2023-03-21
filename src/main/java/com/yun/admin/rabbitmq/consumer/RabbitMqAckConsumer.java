@@ -1,5 +1,6 @@
-package com.yun.admin.rabbitmq;
+package com.yun.admin.rabbitmq.consumer;
 
+import com.alibaba.fastjson.JSONObject;
 import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -13,12 +14,12 @@ public class RabbitMqAckConsumer {
 
     @RabbitListener(queues = "queue01")
     @RabbitHandler
-    public void receiveMsg(String msg, Channel channel, Message message) throws IOException {
+    public void receiveMsg(JSONObject msg, Channel channel, Message message) throws IOException {
         System.out.println("received msg:" + msg);
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
         try {
             //制造异常，验证队列重试
-            int i = 10/0;
+            //int i = 10/0;
             System.out.println("处理消息：" + msg);
             // 处理完毕 手动ack
             channel.basicAck(deliveryTag, false);
